@@ -6,7 +6,14 @@
         xmlns:dxgt="clr-namespace:DevExpress.Xpf.Grid.Themes;assembly=DevExpress.Xpf.Grid.v17.1"
         xmlns:dxght="clr-namespace:DevExpress.Xpf.Grid.HitTest;assembly=DevExpress.Xpf.Grid.v17.1"
         xmlns:local="clr-namespace:GridExample"
+        xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/core" 
+        xmlns:dxcn="http://schemas.devexpress.com/winfx/2008/xaml/core/internal" 
+        xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
+        xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" 
+        xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:cs="colorscheme_ignorable_uri" 
+        xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
         xmlns:viewModels="clr-namespace:GridExample.ViewModels"
+        xmlns:themes="http://schemas.devexpress.com/winfx/2008/xaml/ribbon/themekeys"
         Width="500" Height="370">
 
     <Window.DataContext>
@@ -14,6 +21,103 @@
     </Window.DataContext>
 
     <Window.Resources>
+        <!--DXDialogTemplate-->
+
+        <Thickness x:Key="{dxt:DXWindowThemeKey ResourceKey=ResizeBorderThickness}">4</Thickness>
+        <Thickness x:Key="{dxt:DXWindowThemeKey ResourceKey = BorderEffectOffset}">32</Thickness>
+        <Thickness x:Key="{dxt:DXWindowThemeKey ResourceKey = BorderEffectLeftMargins}">0, 10, 0, 10</Thickness>
+        <Thickness x:Key="{dxt:DXWindowThemeKey ResourceKey = BorderEffectRightMargins}">0, 10, 0, 10</Thickness>
+        <Thickness x:Key="{dxt:DXWindowThemeKey ResourceKey = BorderEffectTopMargins}">0</Thickness>
+        <Thickness x:Key="{dxt:DXWindowThemeKey ResourceKey = BorderEffectBottomMargins}">0</Thickness>
+        <Thickness x:Key="{dxt:DXWindowThemeKey ResourceKey=SizeGripMargin}">7,0,7,7</Thickness>
+        <Thickness x:Key="{dxt:DXWindowThemeKey ResourceKey=FloatingContainerBodyMargin}">6,0,6,6</Thickness>
+        <Thickness x:Key="{dxt:DXWindowThemeKey ResourceKey=FloatingContainerCaptionTextBlockMargin}">6,0,6,0</Thickness>
+        <Thickness x:Key="{dxt:DXWindowThemeKey ResourceKey=FloatingContainerBorderPadding}">1</Thickness>
+        <Thickness x:Key="{dxt:FloatingContainerThemeKey ResourceKey=FloatingContainerHeaderDockMargin}">0</Thickness>
+        <Thickness x:Key="{dxt:FloatingContainerThemeKey ResourceKey=HeaderItemsControlMargin}">0,2,0,0</Thickness>
+        <!--Brushes-->
+        <SolidColorBrush x:Key="{dxt:DXWindowThemeKey ResourceKey = BorderEffectActiveColor}" Color="#FF19478A" />
+        <SolidColorBrush x:Key="{dxt:DXWindowThemeKey ResourceKey = BorderEffectInactiveColor}" Color="#FFABABAB"  />
+        <SolidColorBrush x:Key="{dxt:DXWindowThemeKey ResourceKey=FloatingContainerActiveBodyBorder}" Color="#FFD6D6D6"  />
+        <SolidColorBrush x:Key="{dxt:DXWindowThemeKey ResourceKey=FloatingContainerInactiveBodyBorder}" Color="#FFD6D6D6"  />
+        <SolidColorBrush x:Key="{dxt:DXWindowThemeKey ResourceKey=FloatingContainerBorder}" Color="#FF0072C6"  />
+        <SolidColorBrush x:Key="{dxt:DXWindowThemeKey ResourceKey=FloatingContainerInactiveBorder}" Color="#FF0072C6"  />
+        <SolidColorBrush x:Key="{dxt:DXWindowThemeKey ResourceKey=FloatingContainerBackground}" Color="#FFFBFBFB"  />
+        <SolidColorBrush x:Key="{dxt:DXWindowThemeKey ResourceKey=FloatingContainerInactiveBackground}" Color="#FFFBFBFB"  />
+        <SolidColorBrush x:Key="{dxt:DXWindowThemeKey ResourceKey=ActiveHeaderBackground}" Color="#FFFBFBFB"  />
+        <SolidColorBrush x:Key="{dxt:DXWindowThemeKey ResourceKey=InactiveHeaderBackground}" Color="#FFFBFBFB"  />
+        <SolidColorBrush x:Key="{dxt:FloatingContainerThemeKey ResourceKey=FloatingContainerDefaultButtonForegroundNormalState}" Color="#FF222222"  />
+        <SolidColorBrush x:Key="{dxt:FloatingContainerThemeKey ResourceKey=FloatingContainerDefaultButtonForegroundMouseOverState}" Color="#FFFFFFFF"  />
+        <SolidColorBrush x:Key="{dxt:FloatingContainerThemeKey ResourceKey=FloatingContainerDefaultButtonForegroundPressedState}" Color="#FFFFFFFF"  />
+        <SolidColorBrush x:Key="{dxt:FloatingContainerThemeKey ResourceKey=FloatingContainerCloseButtonForegroundNormalState}" Color="#FFFFFFFF" />
+        <SolidColorBrush x:Key="{dxt:FloatingContainerThemeKey ResourceKey=FloatingContainerCloseButtonForegroundMouseOverState}" Color="#FFFFFFFF" />
+        <SolidColorBrush x:Key="{dxt:FloatingContainerThemeKey ResourceKey=FloatingContainerCloseButtonForegroundPressedState}" Color="#FFFFFFFF" />
+
+        <Style TargetType="{x:Type dxg:ColumnChooserControl}">
+            <Setter Property="Width" Value="800" /> 
+            <Setter Property="Height" Value="600" />
+        </Style>
+        
+        <ControlTemplate x:Key="{themes:RibbonThemeKey ResourceKey=FloatingContainerBodyTemplate, IsThemeIndependent=True}" TargetType="{x:Type ContentControl}">
+            <ContentPresenter  MinWidth="600"/>
+        </ControlTemplate>
+
+        <ControlTemplate x:Key="{dxt:DXWindowThemeKey ResourceKey=FloatingBackground, IsThemeIndependent=True}">
+            <Border Background="{DynamicResource {dxt:DXWindowThemeKey ResourceKey=FloatingContainerActiveBodyBorder}}" Padding="1">
+                <Border Background="Red"/>
+            </Border>
+        </ControlTemplate>
+
+        <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Core.FloatingWindowContainer}" TargetType="{x:Type dx:FloatingWindowContainer}">
+            <Setter Property="ContainerTemplate" Value="{DynamicResource {dxt:FloatingContainerThemeKey ResourceKey=FloatingContainerTemplate}}" />
+            <Setter Property="dx:FloatingContainerControl.ContentOffset" Value="{DynamicResource {dxt:DXWindowThemeKey ResourceKey=FloatingContainerBodyMargin}}" />
+        </Style>
+        
+        
+        <DataTemplate x:Key="{dxt:FloatingContainerThemeKey ResourceKey=FloatingContainerTemplate, IsThemeIndependent=True}">
+            <Grid>
+                <Control x:Name="PART_ActiveBorder" Template="{DynamicResource {dxt:DXWindowThemeKey ResourceKey=FloatingActiveBorder}}" Focusable="False" />
+                <Control x:Name="PART_InactiveBorder" Visibility="Collapsed" Template="{DynamicResource {dxt:DXWindowThemeKey ResourceKey=FloatingInactiveBorder}}" Focusable="False" />
+
+                <Grid Margin="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <ContentControl x:Name="Header" Template="{DynamicResource {dxt:DXWindowThemeKey ResourceKey=HeaderTemplate}}" dxc:HeaderItemControl.CommonTemplateProvider="{DynamicResource {dxt:DXWindowThemeKey ResourceKey=HeaderItemControlCommonTemplateProvider}}" dxc:HeaderItemControl.CloseTemplateProvider="{DynamicResource {dxt:DXWindowThemeKey ResourceKey=HeaderItemControlCloseTemplateProvider}}" Focusable="False" />
+                    <Grid Grid.Row="1" x:Name="PART_ContentOffset" Margin="{Binding Path=(dxc:FloatingContainerControl.ContentOffset), RelativeSource={RelativeSource Self} }">
+                        <Control x:Name="PART_ContentBackground" Template="{DynamicResource {dxt:DXWindowThemeKey ResourceKey=FloatingBackground}}" Focusable="False" />
+                        <Control x:Name="PART_InactiveContentBackground" Visibility="Collapsed" Template="{DynamicResource {dxt:DXWindowThemeKey ResourceKey=InactiveFloatingBackground}}" Focusable="False" />
+                        <Grid Margin="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <ContentPresenter x:Name="PART_ContainerContent" Content="{Binding}" />
+                        </Grid>
+                    </Grid>
+                </Grid>
+                <StackPanel x:Name="PART_StatusPanel" Grid.Row="0" Visibility="Collapsed" VerticalAlignment="Bottom" Margin="{DynamicResource {dxt:DXWindowThemeKey ResourceKey=SizeGripMargin}}">
+                    <Thumb x:Name="PART_SizeGrip" Template="{DynamicResource {dxt:FloatingContainerThemeKey IsVisibleInBlend=True, ResourceKey=FloatingContainerSizeGripTemplate}}" Cursor="SizeNWSE" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="16" Height="16" />
+                </StackPanel>
+                <Control x:Name="PART_ResizeFrame" Template="{DynamicResource {dxt:FloatingContainerThemeKey ResourceKey=FloatingContainerResizeFrame}}" Focusable="False" Visibility="{Binding Path=(dxc:FloatingContainer.IsMaximized), Converter={dxc:BooleanToVisibilityConverter Invert=True}}" />
+                <Thumb x:Name="AdditionalDragWidget" Height="1" Template="{DynamicResource {dxt:FloatingContainerThemeKey IsVisibleInBlend=True, ResourceKey=FloatingContainerDragWidgetTemplate}}" VerticalAlignment="Top" />
+            </Grid>
+            <DataTemplate.Triggers>
+                <DataTrigger Binding="{Binding Path=(dxc:FloatingContainer.IsActive)}" Value="False">
+                    <Setter Property="Visibility" TargetName="PART_InactiveBorder" Value="Visible" />
+                    <Setter Property="Visibility" TargetName="PART_ActiveBorder" Value="Collapsed" />
+                    <Setter Property="Visibility" TargetName="PART_InactiveContentBackground" Value="Visible" />
+                    <Setter Property="Visibility" TargetName="PART_ContentBackground" Value="Collapsed" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Path=(dxc:FloatingContainer.FloatingContainer).AllowSizing, RelativeSource={RelativeSource Self}}" Value="false">
+                    <Setter Property="Visibility" TargetName="PART_StatusPanel" Value="Collapsed" />
+                    <Setter Property="Visibility" TargetName="PART_ResizeFrame" Value="Collapsed" />
+                </DataTrigger>
+            </DataTemplate.Triggers>
+        </DataTemplate>
+        
         <ControlTemplate
             x:Key="{dxgt:GridColumnHeaderThemeKey ResourceKey=IndicatorColumnHeaderTemplate, IsThemeIndependent=True}">
             <Grid Background="Red" />
